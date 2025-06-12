@@ -212,7 +212,8 @@ button:hover {
 
 .program-item-apy {
     color: #555;
-    white-space: nowrap;
+    white-space: normal;
+    text-align: right;
 }
 
 .delete-program-btn {

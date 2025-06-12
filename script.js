@@ -3,6 +3,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const tokenNameInput = document.getElementById("tokenName");
   const stakedTokenPriceInput = document.getElementById("stakedTokenPrice");
   const rewardTokenPriceInput = document.getElementById("rewardTokenPrice");
+  const rewardTokenNameInput = document.getElementById("rewardTokenName");
   const apyInput = document.getElementById("apy");
   const budgetInput = document.getElementById("budget");
   const startDateInput = document.getElementById("startDate");
@@ -100,6 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
       name: tokenNameInput.value,
       stakedTokenPrice: parseFloat(stakedTokenPriceInput.value),
       rewardTokenPrice: parseFloat(rewardTokenPriceInput.value),
+      rewardTokenName: rewardTokenNameInput.value,
       apy: parseFloat(apyInput.value) / 100,
       rewardsPerSecondPerToken: rewardsPerSecondPerToken,
       budget: parseFloat(budgetInput.value),
@@ -132,7 +134,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="program-item-dates">${startDate} &ndash; ${endDate}</span>
           </div>
           <div class="program-item-side">
-            <span class="program-item-apy">${apyFormatted}% APY</span>
+            <span class="program-item-apy">${apyFormatted}% APY <br><small>in ${program.rewardTokenName}</small></span>
             <button class="delete-program-btn" data-index="${index}">&times;</button>
           </div>
         </div>
@@ -163,6 +165,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tokenNameInput.value = program.name;
     stakedTokenPriceInput.value = program.stakedTokenPrice;
     rewardTokenPriceInput.value = program.rewardTokenPrice;
+    rewardTokenNameInput.value = program.rewardTokenName;
     apyInput.value = (program.apy * 100).toLocaleString(undefined, {maximumFractionDigits: 10});
     budgetInput.value = program.budget;
     startDateInput.value = new Date(program.startTimestamp * 1000).toISOString().split('T')[0];
@@ -178,6 +181,7 @@ document.addEventListener("DOMContentLoaded", () => {
     tokenNameInput.value = "MyRewardProgram";
     stakedTokenPriceInput.value = "100";
     rewardTokenPriceInput.value = "5";
+    rewardTokenNameInput.value = "RWD";
     apyInput.value = "10";
     budgetInput.value = "1000000";
     vaultInput.value = "0x...";
@@ -226,7 +230,7 @@ document.addEventListener("DOMContentLoaded", () => {
       let invalidCount = 0;
       importedData.forEach(p => {
         const isValid = 'name' in p && 'stakedTokenPrice' in p && 'rewardTokenPrice' in p && 
-                        'apy' in p && 'budget' in p && 'startTimestamp' in p && 
+                        'rewardTokenName' in p && 'apy' in p && 'budget' in p && 'startTimestamp' in p && 
                         'endTimestamp' in p && 'vault' in p;
         if (isValid) {
           programs.push(p);
