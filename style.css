@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f0f2f5;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100vh;
+    margin: 0;
+    padding: 20px;
+    gap: 20px;
+}
+
+.main-container {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+    max-width: 1200px;
+}
+
+.calculator {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    align-self: flex-start;
+}
+
+h1 {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 700;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: #007bff;
+}
+
+.result {
+    margin-top: 30px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.result h2 {
+    color: #333;
+    margin-top: 0;
+    font-size: 18px;
+}
+
+.result p {
+    color: #007bff;
+    font-size: 24px;
+    font-weight: 700;
+    margin: 0;
+    word-wrap: break-word;
+}
+
+.button-group {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #007bff;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    width: 100%;
+    margin-top: 0;
+}
+
+button.secondary {
+    background-color: #6c757d;
+}
+
+button.secondary:hover {
+    background-color: #5a6268;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.json-display-container {
+    background-color: #1e1e1e;
+    color: #d4d4d4;
+    padding: 20px;
+    border-radius: 12px;
+    flex-grow: 1;
+    position: relative;
+    height: 80vh;
+    overflow-y: auto;
+}
+
+#copyJson {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    width: auto;
+}
+
+#copyJson:hover {
+    background-color: #444;
+}
+
+#jsonOutput {
+    font-family: 'Courier New', Courier, monospace;
+    text-align: left;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-size: 14px;
+}
+
+.programs-section {
+    background-color: #ffffff;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    flex-grow: 1;
+    align-self: flex-start;
+}
+
+.program-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-height: 38vh;
+    overflow-y: auto;
+    margin-top: 20px;
+    padding-right: 10px;
+}
+
+.program-item {
+    background-color: #f9f9f9;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    cursor: pointer;
+    transition: background-color 0.3s, border-color 0.3s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+}
+
+.program-item:hover {
+    background-color: #f0f0f0;
+    border-color: #ddd;
+}
+
+.program-item.selected {
+    border-color: #007bff;
+    background-color: #e7f3ff;
+}
+
+.program-item-main {
+    flex-grow: 1;
+}
+
+.program-item-name {
+    font-weight: 700;
+}
+
+.program-item-dates {
+    font-size: 0.85em;
+    color: #666;
+}
+
+.program-item-side {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+.program-item-apy {
+    color: #555;
+    white-space: nowrap;
+}
+
+.delete-program-btn {
+    background-color: #dc3545;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 22px;
+    text-align: center;
+    padding: 0;
+    flex-shrink: 0;
+    transition: background-color 0.3s;
+}
+
+.delete-program-btn:hover {
+    background-color: #c82333;
+}
+
+.json-actions {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 20px;
+}
+
+#jsonImportExport {
+    width: 100%;
+    min-height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 14px;
+    box-sizing: border-box;
+    margin-bottom: 10px;
+} 

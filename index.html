@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rewards Calculator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="main-container">
+    <div class="calculator">
+      <h1>Rewards Calculator</h1>
+      <div class="input-group">
+        <label for="tokenName">Program Name</label>
+        <input type="text" id="tokenName" value="MyRewardProgram">
+      </div>
+      <div class="input-group">
+        <label for="stakedTokenPrice">Staked Token Price ($)</label>
+        <input type="number" id="stakedTokenPrice" value="100">
+      </div>
+      <div class="input-group">
+        <label for="rewardTokenPrice">Reward Token Price ($)</label>
+        <input type="number" id="rewardTokenPrice" value="5">
+      </div>
+      <div class="input-group">
+        <label for="apy">Annual Percentage Yield (%)</label>
+        <input type="number" id="apy" value="10">
+      </div>
+      <div class="input-group">
+        <label for="budget">Budget (in reward token)</label>
+        <input type="number" id="budget" value="1000000">
+      </div>
+      <div class="input-group">
+        <label for="startDate">Start Date</label>
+        <input type="date" id="startDate">
+      </div>
+      <div class="input-group">
+        <label for="endDate">End Date</label>
+        <input type="date" id="endDate">
+      </div>
+      <div class="input-group">
+        <label for="vault">Vault Address</label>
+        <input type="text" id="vault" value="0x...">
+      </div>
+      <div class="result">
+        <h2>Rewards per second per token</h2>
+        <p id="resultValue">0.000000000000000000</p>
+      </div>
+      <div class="result">
+        <h2>Max Stakable Tokens (for full duration)</h2>
+        <p id="maxStakedTokensValue">0</p>
+      </div>
+      <div class="button-group">
+        <button id="addOrUpdateProgram">Add Program</button>
+        <button id="clearForm" class="secondary">Clear Form</button>
+      </div>
+    </div>
+    <div class="programs-section">
+      <h2>Programs</h2>
+      <div id="programList" class="program-list">
+        <!-- Programs will be dynamically inserted here -->
+      </div>
+      <div class="json-actions">
+        <h3>Import / Export</h3>
+        <textarea id="jsonImportExport" placeholder="Paste JSON to import, or see exported JSON here."></textarea>
+        <div class="button-group">
+          <button id="importJson">Import from Textarea</button>
+          <button id="exportJson">Export to Textarea</button>
+          <button id="copyJson">Copy JSON</button>
+          <button id="clearJson" class="secondary">Clear Textarea</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
