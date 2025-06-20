@@ -135,7 +135,8 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
           <div class="program-item-side">
             <span class="program-item-apy">${apyFormatted}% APY <br><small>in ${program.rewardTokenName}</small></span>
-            <button class="delete-program-btn" data-index="${index}">&times;</button>
+            <button class="duplicate-program-btn" data-index="${index}" title="Duplicate">⎘</button>
+            <button class="delete-program-btn" data-index="${index}" title="Delete">&times;</button>
           </div>
         </div>
       `;
@@ -156,6 +157,17 @@ document.addEventListener("DOMContentLoaded", () => {
       }
       renderProgramList();
     }
+  }
+
+  function duplicateProgram(index) {
+    const originalProgram = programs[index];
+    const duplicatedProgram = {
+      ...originalProgram,
+      name: `${originalProgram.name} (Copy)`
+    };
+    
+    programs.push(duplicatedProgram);
+    renderProgramList();
   }
 
   function selectProgramForEditing(index) {
@@ -263,6 +275,8 @@ document.addEventListener("DOMContentLoaded", () => {
       
       if (target.closest('.delete-program-btn')) {
         deleteProgram(index);
+      } else if (target.closest('.duplicate-program-btn')) {
+        duplicateProgram(index);
       } else {
         selectProgramForEditing(index);
       }
