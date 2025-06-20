@@ -237,6 +237,27 @@ button:hover {
     background-color: #c82333;
 }
 
+.duplicate-program-btn {
+    background-color: #28a745;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 22px;
+    text-align: center;
+    padding: 0;
+    flex-shrink: 0;
+    transition: background-color 0.3s;
+}
+
+.duplicate-program-btn:hover {
+    background-color: #218838;
+}
+
 .json-actions {
     margin-top: 20px;
     border-top: 1px solid #eee;
