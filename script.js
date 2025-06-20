@@ -105,8 +105,8 @@ document.addEventListener("DOMContentLoaded", () => {
       apy: parseFloat(apyInput.value) / 100,
       rewardsPerSecondPerToken: rewardsPerSecondPerToken,
       budget: parseFloat(budgetInput.value),
-      startTimestamp: new Date(startDateInput.value).getTime() / 1000,
-      endTimestamp: new Date(endDateInput.value).getTime() / 1000,
+      startTimestamp: new Date(startDateInput.value + 'Z').getTime() / 1000,
+      endTimestamp: new Date(endDateInput.value + 'Z').getTime() / 1000,
       vault: vaultInput.value,
     };
 
@@ -122,8 +122,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function renderProgramList() {
     programListDiv.innerHTML = programs.map((program, index) => {
-      const startDate = new Date(program.startTimestamp * 1000).toLocaleDateString();
-      const endDate = new Date(program.endTimestamp * 1000).toLocaleDateString();
+      const startDate = new Date(program.startTimestamp * 1000);
+      const endDate = new Date(program.endTimestamp * 1000);
+      const startFormatted = startDate.toLocaleString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC'
+      });
+      const endFormatted = endDate.toLocaleString('en-US', { 
+        year: 'numeric', 
+        month: 'short', 
+        day: 'numeric',
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'UTC'
+      });
       const apyFormatted = (program.apy * 100).toLocaleString(undefined, { maximumFractionDigits: 2 });
       const isSelected = index === currentlyEditingIndex ? 'selected' : '';
 
@@ -131,7 +147,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="program-item ${isSelected}" data-index="${index}">
           <div class="program-item-main">
             <span class="program-item-name">${program.name}</span>
-            <span class="program-item-dates">${startDate} &ndash; ${endDate}</span>
+            <span class="program-item-dates">${startFormatted} &ndash; ${endFormatted} UTC</span>
           </div>
           <div class="program-item-side">
             <span class="program-item-apy">${apyFormatted}% APY <br><small>in ${program.rewardTokenName}</small></span>
@@ -180,8 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
     rewardTokenNameInput.value = program.rewardTokenName;
     apyInput.value = (program.apy * 100).toLocaleString(undefined, {maximumFractionDigits: 10});
     budgetInput.value = program.budget;
-    startDateInput.value = new Date(program.startTimestamp * 1000).toISOString().split('T')[0];
-    endDateInput.value = new Date(program.endTimestamp * 1000).toISOString().split('T')[0];
+    startDateInput.value = new Date(program.startTimestamp * 1000).toISOString().slice(0, 16);
+    endDateInput.value = new Date(program.endTimestamp * 1000).toISOString().slice(0, 16);
     vaultInput.value = program.vault;
 
     addOrUpdateProgramBtn.textContent = "Update Program";
@@ -208,10 +224,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function setDefaultDates() {
     const today = new Date();
-    startDateInput.value = today.toISOString().split("T")[0];
     const oneWeekLater = new Date(today);
     oneWeekLater.setDate(today.getDate() + 7);
-    endDateInput.value = oneWeekLater.toISOString().split("T")[0];
+    
+    // Set to midnight UTC
+    today.setUTCHours(0, 0, 0, 0);
+    oneWeekLater.setUTCHours(0, 0, 0, 0);
+    
+    startDateInput.value = today.toISOString().slice(0, 16);
+    endDateInput.value = oneWeekLater.toISOString().slice(0, 16);
   }
 
   function exportJson() {
